@@ -1,4 +1,5 @@
 # Mentora
+An Autonomous AI Learning System
 
 **Mentora** is an AI-driven Data Structures and Algorithms (DSA) performance analyzer and personalized mentoring platform. It ingests student performance data (e.g., from LeetCode), analyzes strengths and weaknesses, and uses advanced AI—including a Retrieval-Augmented Generation (RAG) pipeline—to generate customized, actionable learning plans and problem recommendations.
 

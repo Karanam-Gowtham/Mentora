@@ -1,0 +1,63 @@
+Concept Overview
+
+Tree problems test hierarchical reasoning. Most interview trees are Binary Trees or Binary Search Trees. The core difficulty is managing recursion stack, parent-child relationships, and state propagation from children to parent.
+
+Core Patterns
+
+DFS (Preorder, Inorder, Postorder)
+
+BFS (Level Order Traversal)
+
+Height / Depth calculation
+
+Lowest Common Ancestor
+
+Diameter of tree
+
+Path sum problems
+
+BST property validation
+
+Construct tree from traversal arrays
+
+Common Mistakes
+
+Forgetting base case (root == None)
+
+Not returning values correctly in recursion
+
+Mixing global and local state
+
+Confusing BFS with DFS use cases
+
+Not understanding postorder for bottom-up problems
+
+Mental Model
+
+Think in terms of:
+“Each node asks its children for information and returns processed data upward.”
+
+Tree problems are divide → solve left → solve right → combine.
+
+If solution depends on subtree results → postorder DFS.
+If solution depends on levels → BFS.
+
+Interview Traps
+
+Not handling null nodes
+
+Off-by-one height errors
+
+Not separating tree construction from traversal logic
+
+Progressive Training Plan
+
+Binary Tree Inorder Traversal
+
+Maximum Depth of Binary Tree
+
+Diameter of Binary Tree
+
+Validate BST
+
+Lowest Common Ancestor

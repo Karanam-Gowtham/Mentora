@@ -1,0 +1,65 @@
+Concept Overview
+
+Dynamic Programming is optimization over overlapping subproblems.
+
+DP is difficult because it requires state definition and transition design.
+
+Core Patterns
+
+1D DP (Fibonacci type)
+
+2D DP (Grid, subsequence)
+
+Knapsack
+
+Longest Increasing Subsequence
+
+DP on trees
+
+Memoization vs Tabulation
+
+Common Mistakes
+
+Wrong state definition
+
+Missing base cases
+
+Overcomplicating transitions
+
+Not recognizing overlapping subproblems
+
+Mental Model
+
+Ask:
+
+What is my state?
+
+What are my choices?
+
+How do I transition?
+
+What is base case?
+
+DP = State + Transition + Base Case.
+
+If brute force recursion has overlapping calls → DP.
+
+Interview Traps
+
+Forgetting to initialize DP array
+
+Off-by-one indexing
+
+Using recursion without memoization
+
+Progressive Training Plan
+
+Climbing Stairs
+
+House Robber
+
+Coin Change
+
+Longest Increasing Subsequence
+
+Edit Distance

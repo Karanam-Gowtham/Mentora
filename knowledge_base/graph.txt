@@ -1,0 +1,67 @@
+Concept Overview
+
+Graphs test connectivity, traversal, shortest path, and component detection. Most problems reduce to BFS, DFS, or Union-Find.
+
+Core Patterns
+
+BFS (shortest path in unweighted graph)
+
+DFS (cycle detection, connectivity)
+
+Topological Sort (DAG problems)
+
+Union-Find (disjoint sets)
+
+Dijkstra (weighted shortest path)
+
+Grid problems as implicit graphs
+
+Common Mistakes
+
+Forgetting visited set
+
+Infinite recursion in DFS
+
+Confusing directed vs undirected graph
+
+Not detecting cycles correctly
+
+Wrong queue usage in BFS
+
+Mental Model
+
+Graph = Nodes + Edges.
+
+Always ask:
+
+Is it connected?
+
+Is it cyclic?
+
+Is it weighted?
+
+Do I need shortest path?
+
+If shortest path in unweighted graph → BFS.
+If dependency ordering → Topological sort.
+If connectivity merging → Union-Find.
+
+Interview Traps
+
+Not marking visited before recursion
+
+Missing edge cases in disconnected graphs
+
+Incorrect adjacency list creation
+
+Progressive Training Plan
+
+Number of Islands
+
+Clone Graph
+
+Course Schedule
+
+Pacific Atlantic Water Flow
+
+Network Delay Time

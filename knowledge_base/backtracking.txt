@@ -1,0 +1,114 @@
+Concept Overview
+
+Backtracking is systematic exploration of all possible configurations while pruning invalid paths early.
+
+It is used when:
+
+You must generate all combinations/permutations
+
+You must satisfy constraints
+
+The solution space is exponential
+
+Backtracking is DFS on decision tree.
+
+Each level = one decision.
+Each branch = one choice.
+
+Core Patterns
+
+Subset Generation
+
+Include / Exclude pattern
+
+Power set problems
+
+Permutations
+
+Use visited array
+
+Swap-based permutation
+
+Combination Sum
+
+Choose number, reduce target
+
+Reuse allowed vs not allowed
+
+N-Queens
+
+Column + diagonal conflict checking
+
+Sudoku Solver
+
+Constraint satisfaction
+
+Try → validate → revert
+
+Word Search
+
+Grid DFS with visited tracking
+
+Standard Template
+def backtrack(path, choices):
+    if goal_reached:
+        save_result()
+        return
+
+    for choice in choices:
+        if invalid(choice):
+            continue
+
+        make_choice(choice)
+        backtrack(updated_path, updated_choices)
+        undo_choice(choice)
+
+The undo step is CRITICAL.
+
+Common Mistakes
+
+Forgetting to undo state
+
+Modifying shared list without copying
+
+Not pruning early
+
+Not checking constraints before recursion
+
+Using global variables incorrectly
+
+Mental Model
+
+Think:
+
+“I am building a decision tree.”
+
+Each recursive call represents one node.
+You explore → revert → explore next.
+
+Backtracking is brute force + pruning.
+
+If you are timing out:
+You are not pruning aggressively.
+
+Interview Traps
+
+Not handling duplicates in subsets/permutations
+
+Forgetting to sort before pruning
+
+Exponential explosion due to poor pruning
+
+Using O(n) validation inside recursion repeatedly
+
+Progressive Training Plan
+
+Subsets
+
+Permutations
+
+Combination Sum
+
+Word Search
+
+N-Queens

@@ -1,0 +1,102 @@
+Concept Overview
+
+Heap is a specialized tree-based data structure used to efficiently get:
+
+Minimum element (Min Heap)
+
+Maximum element (Max Heap)
+
+Most interview problems use priority queues.
+
+Time Complexity:
+
+Insert: O(log n)
+
+Remove top: O(log n)
+
+Peek: O(1)
+
+Core Patterns
+
+Top K Elements
+
+Maintain min heap of size K
+
+Used in K largest / K closest problems
+
+Merge K Sorted Lists
+
+Push first element of each list
+
+Always extract smallest
+
+Frequency Problems
+
+Use heap of (frequency, element)
+
+Sliding Window Median
+
+Two heaps (max heap + min heap)
+
+Task Scheduling
+
+Always pick highest priority task
+
+Heap vs Sorting
+
+Sorting → O(n log n)
+
+Heap for Top K → O(n log k)
+
+When k << n → heap is superior.
+
+Common Mistakes
+
+Not maintaining heap size (overflow beyond k)
+
+Confusing min heap vs max heap
+
+Forgetting Python default heapq is min heap
+
+Using full sort when heap is better
+
+Mental Model
+
+Heap is not for traversal.
+
+Heap is for:
+“Give me best candidate at every step.”
+
+If problem says:
+
+K largest
+
+K smallest
+
+Priority
+
+Frequent elements
+
+Real-time ordering
+
+Think heap.
+
+Interview Traps
+
+Not pushing correct tuple ordering
+
+Wrong comparator logic (in Java/C++)
+
+Using heap where simple sorting is enough
+
+Progressive Training Plan
+
+Kth Largest Element
+
+Top K Frequent Elements
+
+Merge K Sorted Lists
+
+Find Median from Data Stream
+
+Sliding Window Median

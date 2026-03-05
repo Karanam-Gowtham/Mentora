@@ -31,19 +31,65 @@ export default function App() {
       <div className="bg-white p-6 rounded-xl shadow mb-6">
         <h2 className="text-2xl font-semibold mb-4">Performance Snapshot</h2>
         <p>Total Solved: {snapshot.total}</p>
-        <p>Easy: {snapshot.easy_percent}%</p>
-        <p>Medium: {snapshot.medium_percent}%</p>
-        <p>Hard: {snapshot.hard_percent}%</p>
-        <p>Weakest Topic: {snapshot.weakest_topic}</p>
+        <div className="space-y-3">
+
+          <div>
+            <p>Easy {snapshot.easy_percent}%</p>
+            <div className="w-full bg-gray-200 rounded">
+              <div
+                className="bg-green-500 text-xs text-white text-center rounded"
+                style={{ width: `${snapshot.easy_percent}%` }}
+              >
+                {snapshot.easy_percent}%
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p>Medium {snapshot.medium_percent}%</p>
+            <div className="w-full bg-gray-200 rounded">
+              <div
+                className="bg-yellow-500 text-xs text-white text-center rounded"
+                style={{ width: `${snapshot.medium_percent}%` }}
+              >
+                {snapshot.medium_percent}%
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p>Hard {snapshot.hard_percent}%</p>
+            <div className="w-full bg-gray-200 rounded">
+              <div
+                className="bg-red-500 text-xs text-white text-center rounded"
+                style={{ width: `${snapshot.hard_percent}%` }}
+              >
+                {snapshot.hard_percent}%
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div className="mt-4">
+          <span className="text-sm text-gray-500">Weakest Topic</span>
+          <div className="text-lg font-semibold text-red-600">
+            {snapshot.weakest_topic}
+          </div>
+        </div>
       </div>
 
       <div className="bg-white p-6 rounded-xl shadow mb-6">
         <h2 className="text-2xl font-semibold mb-4">Risk Flags</h2>
-        <ul className="list-disc pl-6">
+        <div className="flex flex-wrap gap-2">
           {risk_flags?.map((flag, index) => (
-            <li key={index}>{flag}</li>
+            <span
+              key={index}
+              className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm"
+            >
+              {flag}
+            </span>
           ))}
-        </ul>
+        </div>
       </div>
 
       <div className="bg-white p-6 rounded-xl shadow">

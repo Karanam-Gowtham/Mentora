@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-03-07",
+  "weakest_topic": "Linked List",
+  "skills": {
+    "Array": 100,
+    "Matrix": 3,
+    "String": 25,
+    "Simulation": 16,
+    "Sorting": 20,
+    "Stack": 12,
+    "Queue": 4,
+    "Linked List": 1,
+    "Two Pointers": 24,
+    "Hash Table": 25,
+    "Greedy": 4,
+    "Binary Search": 12,
+    "Recursion": 1,
+    "Sliding Window": 1,
+    "Bit Manipulation": 14,
+    "Math": 20,
+    "Design": 4,
+    "Database": 1,
+    "Dynamic Programming": 6,
+    "Divide and Conquer": 8,
+    "Trie": 1,
+    "Monotonic Stack": 4
+  },
+  "problems_solved": 0
+}

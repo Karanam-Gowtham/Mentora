@@ -1,7 +1,27 @@
 # Mentora
 An Autonomous AI Learning System
 
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 **Mentora** is an AI-driven Data Structures and Algorithms (DSA) performance analyzer and personalized mentoring platform. It ingests student performance data (e.g., from LeetCode), analyzes strengths and weaknesses, and uses advanced AI—including a Retrieval-Augmented Generation (RAG) pipeline—to generate customized, actionable learning plans and problem recommendations.
+
+---
+
+## 📌 Version History
+
+### [1.0.0] - 2026-03-07
+#### "The Foundation Release"
+This is the first stable version of Mentora, establishing the core RAG pipeline and the mentorship engine.
+
+**Key Features in v1.0.0:**
+- **RAG-Powered Mentorship:** Completed the integration of ChromaDB with Gemini 2.5 Flash for grounded DSA theoretical coaching.
+- **LeetCode Ingestion Engine:** Automated fetching and parsing of user submission history.
+- **Dynamic Skill Snapshot:** Real-time generation of student performance metrics, highlighting "Risk Flags" like difficulty stagnation.
+- **Adaptive Curriculum:** Automated generation of 7-day personalized training plans based on detected cognitive gaps.
+- **Interactive Dashboard:** A modern React/Tailwind frontend with Recharts integration for visual progress tracking.
+
+---
 
 ## 🚀 Features
 
@@ -23,7 +43,7 @@ An Autonomous AI Learning System
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React.js 19, Vite, TailwindCSS 4
+- **Frontend:** React.js 19, Vite, TailwindCSS 4, Recharts
 - **Backend:** Python, FastAPI, Pandas
 - **AI/ML:** 
   - Generative AI: **Google Gemini 2.5 Flash**
@@ -71,7 +91,7 @@ npm install
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:5173` and the backend strictly at the default port (usually `http://localhost:8000`).
+The frontend will be available at `http://localhost:5173` and the backend at `http://localhost:8000`.
 
 ## 🧠 How the AI Works
 
@@ -81,4 +101,5 @@ The frontend will be available at `http://localhost:5173` and the backend strict
 4. **Action:** The system returns a structured response containing the Root Cause, Thinking Gap, and a step-by-step improvement plan.
 
 ## 📜 License
-This project is proprietary or licensed as defined by the repository owner.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+

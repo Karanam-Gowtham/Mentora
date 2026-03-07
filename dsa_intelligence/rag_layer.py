@@ -11,6 +11,7 @@ def generate_rag_analysis():
     # ---------------------------------------
     # Paths
     # ---------------------------------------
+
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     PROJECT_ROOT = os.path.dirname(BASE_DIR)
 
@@ -20,8 +21,9 @@ def generate_rag_analysis():
     load_dotenv(dotenv_path)
 
     # ---------------------------------------
-    # 1. Detect Weakest Topic
+    # Detect Weakest Topic
     # ---------------------------------------
+
     topic_df = pd.read_csv(topic_path)
 
     latest_time = topic_df["timestamp"].max()
@@ -40,8 +42,9 @@ def generate_rag_analysis():
     weakest_topic = min(priority_topics, key=lambda t: topic_dict.get(t, 0))
 
     # ---------------------------------------
-    # 2. Load Knowledge File
+    # Load Knowledge Base
     # ---------------------------------------
+
     file_map = {
         "Tree": "tree.txt",
         "Graph": "graph.txt",
@@ -56,87 +59,89 @@ def generate_rag_analysis():
         text = f.read()
 
     # ---------------------------------------
-    # 3. Chunking
+    # Chunking
     # ---------------------------------------
+
     chunk_size = 400
     chunks = [text[i:i + chunk_size] for i in range(0, len(text), chunk_size)]
 
     # ---------------------------------------
-    # 4. Chroma Setup
+    # Chroma Setup
     # ---------------------------------------
+
     chroma_client = chromadb.Client()
 
-    try:
-        chroma_client.delete_collection("dsa_knowledge")
-    except:
-        pass
-
-    try:
-        embedding_func = embedding_functions.SentenceTransformerEmbeddingFunction(
-            model_name="all-MiniLM-L6-v2",
-            local_files_only=True
-        )
-    except:
-        embedding_func = embedding_functions.SentenceTransformerEmbeddingFunction(
-            model_name="all-MiniLM-L6-v2"
-        )
+    embedding_func = embedding_functions.SentenceTransformerEmbeddingFunction(
+        model_name="all-MiniLM-L6-v2"
+    )
 
     collection = chroma_client.get_or_create_collection(
         name="dsa_knowledge",
         embedding_function=embedding_func
     )
 
-    for idx, chunk in enumerate(chunks):
-        collection.add(
-            documents=[chunk],
-            ids=[f"{weakest_topic}_{idx}"]
-        )
+    # Only add chunks if collection is empty
+    if collection.count() == 0:
+
+        for idx, chunk in enumerate(chunks):
+
+            collection.add(
+                documents=[chunk],
+                ids=[f"{weakest_topic}_{idx}"]
+            )
 
     # ---------------------------------------
-    # 5. Retrieval
+    # Retrieval
     # ---------------------------------------
-    query = f"""
-    Explain weakness in {weakest_topic}.
-    Focus on thinking gap and structured improvement.
-    """
+
+    query = f"Common learning mistakes in {weakest_topic}"
 
     results = collection.query(query_texts=[query], n_results=1)
 
     retrieved_context = results["documents"][0][0]
 
     # ---------------------------------------
-    # 6. Gemini Reasoning
+    # Gemini Reasoning
     # ---------------------------------------
+
     try:
 
         client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
         analysis_prompt = f"""
-You are a strict DSA performance analyst.
+You are an AI coding mentor.
 
-Student Performance Data:
-- Weakest Topic: {weakest_topic}
-- Easy problems dominant
-- Hard problems very low
+Student weakness:
+{weakest_topic}
 
-Relevant Knowledge Snippet:
+Knowledge:
 {retrieved_context}
 
-Your task:
+Respond in SHORT format.
 
-1. Identify ROOT CAUSE of weakness (performance-based).
-2. Identify THINKING GAP (cognitive mistake).
-3. Suggest 5 progressive problems (in increasing difficulty).
-4. Provide a 7-day structured training plan.
+Rules:
+- Maximum 4 lines
+- Each line under 12 words
+- No paragraphs
+- No explanations
 
-Be precise and structured.
+Format:
+
+INSIGHT: <main weakness>
+
+REASON: <thinking mistake>
+
+ACTION: <concept to practice>
+
+NEXT_PROBLEM: <type of problem>
 """
 
         response = client.models.generate_content(
             model="gemini-2.5-flash",
             contents=analysis_prompt,
             config={
-                "temperature": 0.2
+                "temperature": 0.1,
+                "max_output_tokens": 120
             }
         )
 
@@ -145,12 +150,11 @@ Be precise and structured.
     except Exception as e:
 
         return f"""
-RAG Analysis Failed
+INSIGHT: Weakness detected in {weakest_topic}
 
-Weakest Topic Detected: {weakest_topic}
+REASON: AI analysis unavailable
 
-Possible reason:
-{str(e)}
+ACTION: Practice fundamental problems
 
-Please check Gemini API quota or network.
+ERROR: {str(e)}
 """

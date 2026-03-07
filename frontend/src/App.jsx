@@ -7,13 +7,19 @@ import {
   YAxis,
   Tooltip,
   CartesianGrid,
-  ResponsiveContainer
+  ResponsiveContainer,
+  RadarChart,
+  Radar,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis
 } from "recharts";
 
 export default function App() {
 
   const [data, setData] = useState(null);
   const [progress, setProgress] = useState([]);
+  const [showFullAnalysis, setShowFullAnalysis] = useState(false);
 
   async function loadDashboard() {
     try {
@@ -34,7 +40,6 @@ export default function App() {
     loadDashboard();
   }, []);
 
-
   async function syncLeetcode() {
 
     try {
@@ -43,7 +48,6 @@ export default function App() {
         method: "POST"
       });
 
-      // reload everything after sync
       loadDashboard();
 
     } catch (err) {
@@ -51,225 +55,308 @@ export default function App() {
     }
   }
 
-
   const snapshot = data?.snapshot;
   const risk_flags = data?.risk_flags;
   const analysis = data?.analysis;
+  const insight = data?.insight;
+  const skills = data?.skills || {};
 
+  const training = data?.training || [];
+  const curriculum = data?.curriculum || [];
+
+  async function submitAttempt(problem, result) {
+
+    try {
+
+      await fetch("http://127.0.0.1:8000/submit-attempt", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          problem: problem.title,
+          topic: snapshot?.weakest_topic,
+          difficulty: problem.difficulty,
+          result: result,
+          time_taken: 0
+        })
+      });
+
+      alert("Attempt recorded");
+
+    } catch (err) {
+      console.error(err);
+    }
+
+  }
+
+  const radarData = [
+    { topic: "Array", score: skills["Array"] || 0 },
+    { topic: "Tree", score: skills["Tree"] || 0 },
+    { topic: "Graph", score: skills["Graph"] || 0 },
+    { topic: "DP", score: skills["Dynamic Programming"] || 0 },
+    { topic: "Backtracking", score: skills["Backtracking"] || 0 },
+    { topic: "Heap", score: skills["Heap"] || 0 },
+    { topic: "LinkedList", score: skills["Linked List"] || 0 }
+  ];
 
   if (!snapshot) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-xl">
-        Loading Mentora...
-      </div>
-    );
-  }
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4">
 
-
-  return (
-
-    <div className="min-h-screen bg-gray-100 p-10">
-
-      {/* Header */}
-      <div className="flex items-center justify-between mb-8">
-
-        <h1 className="text-4xl font-bold text-blue-600">
-          Mentora Dashboard
-        </h1>
+        <h2 className="text-xl font-semibold">Mentora is not synced yet</h2>
 
         <button
           onClick={syncLeetcode}
           className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
         >
-          Sync LeetCode
+          Run First Sync
         </button>
 
       </div>
+    );
+  }
 
+  return (
 
-      {/* Stat Cards */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+    <div className="min-h-screen w-full bg-gray-50 px-12 py-10">
 
-        <div className="bg-white p-4 rounded-xl shadow">
-          <p className="text-gray-500 text-sm">Total Solved</p>
-          <p className="text-2xl font-bold">{snapshot.total}</p>
-        </div>
+      <div className="max-w-[1800px] mx-auto">
 
-        <div className="bg-green-50 p-4 rounded-xl shadow">
-          <p className="text-gray-500 text-sm">Easy</p>
-          <p className="text-2xl font-bold text-green-600">
-            {snapshot.easy_percent}%
-          </p>
-        </div>
+        {/* HEADER */}
+        <div className="bg-white rounded-xl shadow-sm px-8 py-4 flex items-center justify-between mb-10">
 
-        <div className="bg-yellow-50 p-4 rounded-xl shadow">
-          <p className="text-gray-500 text-sm">Medium</p>
-          <p className="text-2xl font-bold text-yellow-600">
-            {snapshot.medium_percent}%
-          </p>
-        </div>
+          <div className="flex items-center gap-3">
+            <div className="rounded-lg">
+              <img src="/mentora.png" alt="Mentora" className="rounded-lg w-12 h-12" />
+            </div>
 
-        <div className="bg-red-50 p-4 rounded-xl shadow">
-          <p className="text-gray-500 text-sm">Hard</p>
-          <p className="text-2xl font-bold text-red-600">
-            {snapshot.hard_percent}%
-          </p>
-        </div>
-
-      </div>
-
-
-      {/* Difficulty Distribution */}
-      <div className="bg-white p-6 rounded-xl shadow mb-6">
-
-        <h2 className="text-xl font-semibold mb-4">
-          Difficulty Distribution
-        </h2>
-
-        <div className="space-y-4">
-
-          <div>
-            <p className="text-sm mb-1">Easy</p>
-            <div className="w-full bg-gray-200 rounded">
-              <div
-                className="bg-green-500 text-xs text-white text-center rounded"
-                style={{ width: `${snapshot.easy_percent}%` }}
-              >
-                {snapshot.easy_percent}%
-              </div>
+            <div>
+              <h1 className="text-2xl font-bold text-blue-600">
+                Mentora
+              </h1>
+              <p className="text-xs text-gray-500">
+                Autonomous AI Learning System
+              </p>
             </div>
           </div>
 
-          <div>
-            <p className="text-sm mb-1">Medium</p>
-            <div className="w-full bg-gray-200 rounded">
-              <div
-                className="bg-yellow-500 text-xs text-white text-center rounded"
-                style={{ width: `${snapshot.medium_percent}%` }}
-              >
-                {snapshot.medium_percent}%
-              </div>
-            </div>
+          <button
+            onClick={syncLeetcode}
+            className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700"
+          >
+            Sync LeetCode
+          </button>
+
+        </div>
+
+        {/* STATS */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+
+          <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+            <p className="text-gray-500 text-sm">Total Solved</p>
+            <p className="text-3xl font-bold">{snapshot.total}</p>
           </div>
 
-          <div>
-            <p className="text-sm mb-1">Hard</p>
-            <div className="w-full bg-gray-200 rounded">
-              <div
-                className="bg-red-500 text-xs text-white text-center rounded"
-                style={{ width: `${snapshot.hard_percent}%` }}
-              >
-                {snapshot.hard_percent}%
-              </div>
-            </div>
+          <div className="bg-green-50 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+            <p className="text-gray-500 text-sm">Easy</p>
+            <p className="text-3xl font-bold text-green-600">
+              {snapshot.easy_percent}%
+            </p>
+          </div>
+
+          <div className="bg-yellow-50 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+            <p className="text-gray-500 text-sm">Medium</p>
+            <p className="text-3xl font-bold text-yellow-600">
+              {snapshot.medium_percent}%
+            </p>
+          </div>
+
+          <div className="bg-red-50 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+            <p className="text-gray-500 text-sm">Hard</p>
+            <p className="text-3xl font-bold text-red-600">
+              {snapshot.hard_percent}%
+            </p>
           </div>
 
         </div>
 
-      </div>
+
+        {/* MAIN GRID */}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+
+          {/* LEFT COLUMN */}
+          <div className="space-y-8">
+
+            {/* Progress */}
+            <div className="bg-white p-6 rounded-xl shadow">
+
+              <h2 className="text-lg font-semibold mb-4 text-gray-700">
+                Progress Over Time
+              </h2>
+
+              <ResponsiveContainer width="100%" height={320}>
+
+                <LineChart data={progress}>
+
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="time" />
+                  <YAxis />
+                  <Tooltip />
+
+                  <Line type="monotone" dataKey="easy" stroke="#22c55e" strokeWidth={3} />
+                  <Line type="monotone" dataKey="medium" stroke="#eab308" strokeWidth={3} />
+                  <Line type="monotone" dataKey="hard" stroke="#ef4444" strokeWidth={3} />
+
+                </LineChart>
+
+              </ResponsiveContainer>
+
+            </div>
 
 
-      {/* Progress Chart */}
-      <div className="bg-white p-6 rounded-xl shadow mb-6">
+            {/* Radar */}
+            <div className="bg-white p-6 rounded-xl shadow">
 
-        <h2 className="text-xl font-semibold mb-4">
-          Progress Over Time
-        </h2>
+              <h2 className="text-lg font-semibold mb-4 text-gray-700">
+                DSA Skill Profile
+              </h2>
 
-        <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={360}>
 
-          <LineChart data={progress}>
+                <RadarChart data={radarData}>
 
-            <CartesianGrid strokeDasharray="3 3" />
+                  <PolarGrid />
+                  <PolarAngleAxis dataKey="topic" />
+                  <PolarRadiusAxis angle={30} domain={[0, 100]} />
 
-            <XAxis dataKey="time" />
+                  <Radar
+                    dataKey="score"
+                    stroke="#3b82f6"
+                    fill="#3b82f6"
+                    fillOpacity={0.6}
+                  />
 
-            <YAxis />
+                  <Tooltip />
 
-            <Tooltip />
+                </RadarChart>
 
-            <Line
-              type="monotone"
-              dataKey="easy"
-              stroke="#22c55e"
-              strokeWidth={3}
-            />
+              </ResponsiveContainer>
 
-            <Line
-              type="monotone"
-              dataKey="medium"
-              stroke="#eab308"
-              strokeWidth={3}
-            />
+            </div>
 
-            <Line
-              type="monotone"
-              dataKey="hard"
-              stroke="#ef4444"
-              strokeWidth={3}
-            />
-
-          </LineChart>
-
-        </ResponsiveContainer>
-
-      </div>
+          </div>
 
 
-      {/* Weakest Topic */}
-      <div className="bg-white p-6 rounded-xl shadow mb-6">
+          {/* RIGHT COLUMN */}
+          <div className="space-y-8">
 
-        <h2 className="text-xl font-semibold mb-2">
-          Weakest Topic
-        </h2>
+            {/* Weakest */}
+            <div className="bg-white p-6 rounded-xl shadow">
 
-        <div className="text-2xl font-bold text-red-600">
-          {snapshot.weakest_topic}
-        </div>
+              <h2 className="text-lg font-semibold mb-2 text-gray-700">
+                Weakest Topic
+              </h2>
 
-      </div>
+              <div className="text-3xl font-bold text-red-600">
+                {snapshot.weakest_topic}
+              </div>
 
-
-      {/* Risk Flags */}
-      <div className="bg-white p-6 rounded-xl shadow mb-6">
-
-        <h2 className="text-xl font-semibold mb-4">
-          Risk Flags
-        </h2>
-
-        <div className="flex flex-wrap gap-2">
-
-          {risk_flags?.map((flag, index) => (
-            <span
-              key={index}
-              className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm"
-            >
-              {flag}
-            </span>
-          ))}
-
-        </div>
-
-      </div>
+            </div>
 
 
-      {/* AI Analysis */}
-      <div className="bg-white p-6 rounded-xl shadow">
+            {/* Insight */}
+            <div className="bg-white p-6 rounded-xl shadow">
 
-        <h2 className="text-xl font-semibold mb-4">
-          AI Analysis
-        </h2>
+              <h2 className="text-lg font-semibold mb-4 text-gray-700">
+                AI Insight
+              </h2>
 
-        <div className="whitespace-pre-wrap text-sm space-y-3">
+              <p><b>Weak Topic:</b> {insight?.topic || "N/A"}</p>
+              <p><b>Skill Level:</b> {insight?.skill_level || "N/A"}</p>
+              <p><b>Today's Focus:</b> {insight?.today_focus || "N/A"}</p>
 
-          {(analysis || "").split("\n").map((line, i) => (
-            <p key={i}>{line}</p>
-          ))}
+              {insight?.risk && (
+                <p className="mt-2 text-red-600 text-sm">
+                  ⚠ {insight.risk}
+                </p>
+              )}
+
+              <button
+                onClick={() => setShowFullAnalysis(!showFullAnalysis)}
+                className="text-blue-600 text-sm mt-4"
+              >
+                {showFullAnalysis ? "Hide Full Analysis ▲" : "Show Full Analysis ▼"}
+              </button>
+
+              {showFullAnalysis && (
+                <div className="whitespace-pre-wrap text-sm text-gray-600 mt-3">
+                  {(analysis || "").split("\n").map((line, i) => (
+                    <p key={i}>{line}</p>
+                  ))}
+                </div>
+              )}
+
+            </div>
+
+
+            {/* Training */}
+            <div className="bg-white p-6 rounded-xl shadow">
+
+              <h2 className="text-lg font-semibold mb-4 text-gray-700">
+                Today's Training
+              </h2>
+
+              {training.map((p, i) => (
+
+                <div key={i} className="border-b py-3 flex justify-between items-center">
+
+                  <div>
+                    <a
+                      href={p.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-600 font-semibold hover:underline"
+                    >
+                      {p.title}
+                    </a>
+
+                    <span className="ml-2 text-sm text-gray-500">
+                      ({p.difficulty})
+                    </span>
+                  </div>
+
+                  <div className="flex gap-2">
+
+                    <button
+                      onClick={() => submitAttempt(p, "solved")}
+                      className="bg-green-500 hover:bg-green-600 text-white text-xs px-3 py-1 rounded"
+                    >
+                      Solved
+                    </button>
+
+                    <button
+                      onClick={() => submitAttempt(p, "failed")}
+                      className="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 rounded"
+                    >
+                      Failed
+                    </button>
+
+                  </div>
+
+                </div>
+
+              ))}
+
+            </div>
+
+          </div>
 
         </div>
 
       </div>
 
     </div>
+
   );
 }

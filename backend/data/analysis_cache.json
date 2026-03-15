@@ -1,63 +1,67 @@
 {
   "state": {
-    "timestamp": "2026-03-07",
+    "timestamp": "2026-03-15",
     "weakest_topic": "Linked List",
     "skills": {
       "Array": 100,
       "Matrix": 3,
-      "String": 25,
-      "Simulation": 16,
-      "Sorting": 20,
-      "Stack": 12,
+      "String": 36,
+      "Simulation": 15,
+      "Sorting": 24,
+      "Stack": 13,
       "Queue": 4,
       "Linked List": 1,
-      "Two Pointers": 24,
-      "Hash Table": 25,
+      "Two Pointers": 28,
+      "Hash Table": 37,
       "Greedy": 4,
-      "Binary Search": 12,
+      "Binary Search": 13,
       "Recursion": 1,
-      "Sliding Window": 1,
-      "Bit Manipulation": 14,
-      "Math": 20,
+      "Sliding Window": 7,
+      "Bit Manipulation": 13,
+      "Math": 21,
       "Design": 4,
       "Database": 1,
-      "Dynamic Programming": 6,
-      "Divide and Conquer": 8,
+      "Quickselect": 1,
+      "Dynamic Programming": 7,
+      "Divide and Conquer": 9,
       "Trie": 1,
+      "Union-Find": 1,
       "Monotonic Stack": 4
     },
     "problems_solved": 0,
     "data_hash": null
   },
   "snapshot": {
-    "total": 85,
-    "easy_percent": 69.41,
-    "medium_percent": 28.24,
-    "hard_percent": 2.35,
+    "total": 98,
+    "easy_percent": 65.31,
+    "medium_percent": 32.65,
+    "hard_percent": 2.04,
     "weakest_topic": "Linked List"
   },
   "skills": {
     "Array": 100,
     "Matrix": 3,
-    "String": 25,
-    "Simulation": 16,
-    "Sorting": 20,
-    "Stack": 12,
+    "String": 36,
+    "Simulation": 15,
+    "Sorting": 24,
+    "Stack": 13,
     "Queue": 4,
     "Linked List": 1,
-    "Two Pointers": 24,
-    "Hash Table": 25,
+    "Two Pointers": 28,
+    "Hash Table": 37,
     "Greedy": 4,
-    "Binary Search": 12,
+    "Binary Search": 13,
     "Recursion": 1,
-    "Sliding Window": 1,
-    "Bit Manipulation": 14,
-    "Math": 20,
+    "Sliding Window": 7,
+    "Bit Manipulation": 13,
+    "Math": 21,
     "Design": 4,
     "Database": 1,
-    "Dynamic Programming": 6,
-    "Divide and Conquer": 8,
+    "Quickselect": 1,
+    "Dynamic Programming": 7,
+    "Divide and Conquer": 9,
     "Trie": 1,
+    "Union-Find": 1,
     "Monotonic Stack": 4
   },
   "risk_flags": [
@@ -67,48 +71,50 @@
   "analysis": "No significant learning changes detected.",
   "training": [
     {
-      "title": "Linked List Cycle",
-      "slug": "linked-list-cycle",
-      "difficulty": "Easy",
-      "topics": [
-        "Hash Table",
-        "Linked List",
-        "Two Pointers"
-      ],
-      "link": "https://leetcode.com/problems/linked-list-cycle"
-    },
-    {
-      "title": "Winner of the Linked List Game",
-      "slug": "winner-of-the-linked-list-game",
+      "title": "Remove Duplicates from Sorted List",
+      "slug": "remove-duplicates-from-sorted-list",
       "difficulty": "Easy",
       "topics": [
         "Linked List"
       ],
-      "link": "https://leetcode.com/problems/winner-of-the-linked-list-game"
+      "link": "https://leetcode.com/problems/remove-duplicates-from-sorted-list"
     },
     {
-      "title": "Merge Nodes in Between Zeros",
-      "slug": "merge-nodes-in-between-zeros",
+      "title": "Linked List Frequency",
+      "slug": "linked-list-frequency",
+      "difficulty": "Easy",
+      "topics": [
+        "Hash Table",
+        "Linked List",
+        "Counting"
+      ],
+      "link": "https://leetcode.com/problems/linked-list-frequency"
+    },
+    {
+      "title": "Next Greater Node In Linked List",
+      "slug": "next-greater-node-in-linked-list",
       "difficulty": "Medium",
       "topics": [
+        "Array",
         "Linked List",
-        "Simulation"
+        "Stack",
+        "Monotonic Stack"
       ],
-      "link": "https://leetcode.com/problems/merge-nodes-in-between-zeros"
+      "link": "https://leetcode.com/problems/next-greater-node-in-linked-list"
     }
   ],
   "curriculum": [
     {
       "day": 1,
-      "title": "Linked List Cycle",
+      "title": "Convert Binary Number in a Linked List to Integer",
       "difficulty": "Easy",
-      "link": "https://leetcode.com/problems/linked-list-cycle"
+      "link": "https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer"
     },
     {
       "day": 2,
-      "title": "Winner of the Linked List Game",
+      "title": "Middle of the Linked List",
       "difficulty": "Easy",
-      "link": "https://leetcode.com/problems/winner-of-the-linked-list-game"
+      "link": "https://leetcode.com/problems/middle-of-the-linked-list"
     },
     {
       "day": 3,
@@ -124,21 +130,21 @@
     },
     {
       "day": 5,
-      "title": "Swap Nodes in Pairs",
+      "title": "Insert Greatest Common Divisors in Linked List",
       "difficulty": "Medium",
-      "link": "https://leetcode.com/problems/swap-nodes-in-pairs"
+      "link": "https://leetcode.com/problems/insert-greatest-common-divisors-in-linked-list"
     },
     {
       "day": 6,
-      "title": "Flatten a Multilevel Doubly Linked List",
+      "title": "Delete Nodes From Linked List Present in Array",
       "difficulty": "Medium",
-      "link": "https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list"
+      "link": "https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array"
     },
     {
       "day": 7,
-      "title": "All O`one Data Structure",
+      "title": "Merge k Sorted Lists",
       "difficulty": "Hard",
-      "link": "https://leetcode.com/problems/all-oone-data-structure"
+      "link": "https://leetcode.com/problems/merge-k-sorted-lists"
     }
   ],
   "insight": {

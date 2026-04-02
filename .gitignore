@@ -1,0 +1,13 @@
+# Environment and secrets
+.env
+.env.*
+backend/.env
+backend/.env.*
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Keep templates versioned
+!.env.example
+!backend/.env.example

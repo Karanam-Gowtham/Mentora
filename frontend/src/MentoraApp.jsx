@@ -188,15 +188,15 @@ export default function MentoraApp() {
 
   async function loadBackendData() {
     try {
-      const analysisRes = await fetch("http://127.0.0.1:8000/analysis");
+      const analysisRes = await fetch("http://127.0.0.1:8010/analysis");
       const analysisData = await analysisRes.json();
       setBackendData(analysisData);
       setBackendOnline(true);
 
-      const progressRes = await fetch("http://127.0.0.1:8000/progress");
+      const progressRes = await fetch("http://127.0.0.1:8010/progress");
       await progressRes.json(); // consumed for side-effects; charts can be extended here
 
-      const velocityRes = await fetch("http://127.0.0.1:8000/velocity");
+      const velocityRes = await fetch("http://127.0.0.1:8010/velocity");
       await velocityRes.json(); // consumed for side-effects; charts can be extended here
 
       if (analysisData?.snapshot?.weakest_topic) {
@@ -248,7 +248,7 @@ export default function MentoraApp() {
     setSyncing(true);
     setSyncMsg(null);
     try {
-      const res = await fetch("http://127.0.0.1:8000/sync", { method: "POST" });
+      const res = await fetch("http://127.0.0.1:8010/sync", { method: "POST" });
       const data = await res.json();
       await loadBackendData();
       setSyncMsg({ type: "success", text: data.message || "Synced successfully!" });
@@ -328,7 +328,7 @@ export default function MentoraApp() {
       const skills = backendData?.skills || {};
 
       // Call YOUR backend (not Anthropic directly)
-      const response = await fetch("http://127.0.0.1:8000/chat", {
+      const response = await fetch("http://127.0.0.1:8010/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

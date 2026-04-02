@@ -8,7 +8,9 @@ import google.generativeai as genai
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+# Load backend/.env reliably regardless of current working directory.
+# override=True ensures stale process-level values do not mask the project key.
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"), override=True)
 
 router = APIRouter()
 
@@ -165,7 +167,7 @@ Remember: You're not just answering questions—you're building their problem-so
         if "API_KEY" in error_msg.upper():
             raise HTTPException(
                 status_code=500,
-                detail="Gemini API key not configured. Please set GEMINI_API_KEY in .env file."
+                detail=f"Gemini API key rejected by provider: {error_msg}"
             )
         elif "QUOTA" in error_msg.upper():
             raise HTTPException(

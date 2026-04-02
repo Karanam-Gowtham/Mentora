@@ -1,29 +1,29 @@
 {
   "state": {
-    "timestamp": "2026-03-15",
-    "weakest_topic": "Linked List",
+    "timestamp": "2026-04-02",
+    "weakest_topic": "Trie",
     "skills": {
       "Array": 100,
-      "Matrix": 3,
+      "Matrix": 2,
       "String": 36,
-      "Simulation": 15,
-      "Sorting": 24,
-      "Stack": 13,
+      "Simulation": 14,
+      "Sorting": 23,
+      "Stack": 14,
       "Queue": 4,
-      "Linked List": 1,
-      "Two Pointers": 28,
-      "Hash Table": 37,
+      "Linked List": 13,
+      "Two Pointers": 39,
+      "Hash Table": 42,
       "Greedy": 4,
-      "Binary Search": 13,
-      "Recursion": 1,
-      "Sliding Window": 7,
-      "Bit Manipulation": 13,
-      "Math": 21,
+      "Binary Search": 14,
+      "Recursion": 4,
+      "Sliding Window": 10,
+      "Bit Manipulation": 14,
+      "Math": 20,
       "Design": 4,
       "Database": 1,
       "Quickselect": 1,
       "Dynamic Programming": 7,
-      "Divide and Conquer": 9,
+      "Divide and Conquer": 8,
       "Trie": 1,
       "Union-Find": 1,
       "Monotonic Stack": 4
@@ -32,34 +32,34 @@
     "data_hash": null
   },
   "snapshot": {
-    "total": 98,
-    "easy_percent": 65.31,
-    "medium_percent": 32.65,
-    "hard_percent": 2.04,
-    "weakest_topic": "Linked List"
+    "total": 109,
+    "easy_percent": 62.39,
+    "medium_percent": 35.78,
+    "hard_percent": 1.83,
+    "weakest_topic": "Trie"
   },
   "skills": {
     "Array": 100,
-    "Matrix": 3,
+    "Matrix": 2,
     "String": 36,
-    "Simulation": 15,
-    "Sorting": 24,
-    "Stack": 13,
+    "Simulation": 14,
+    "Sorting": 23,
+    "Stack": 14,
     "Queue": 4,
-    "Linked List": 1,
-    "Two Pointers": 28,
-    "Hash Table": 37,
+    "Linked List": 13,
+    "Two Pointers": 39,
+    "Hash Table": 42,
     "Greedy": 4,
-    "Binary Search": 13,
-    "Recursion": 1,
-    "Sliding Window": 7,
-    "Bit Manipulation": 13,
-    "Math": 21,
+    "Binary Search": 14,
+    "Recursion": 4,
+    "Sliding Window": 10,
+    "Bit Manipulation": 14,
+    "Math": 20,
     "Design": 4,
     "Database": 1,
     "Quickselect": 1,
     "Dynamic Programming": 7,
-    "Divide and Conquer": 9,
+    "Divide and Conquer": 8,
     "Trie": 1,
     "Union-Find": 1,
     "Monotonic Stack": 4
@@ -71,85 +71,92 @@
   "analysis": "No significant learning changes detected.",
   "training": [
     {
-      "title": "Remove Duplicates from Sorted List",
-      "slug": "remove-duplicates-from-sorted-list",
+      "title": "Count Prefix and Suffix Pairs I",
+      "slug": "count-prefix-and-suffix-pairs-i",
       "difficulty": "Easy",
-      "topics": [
-        "Linked List"
-      ],
-      "link": "https://leetcode.com/problems/remove-duplicates-from-sorted-list"
-    },
-    {
-      "title": "Linked List Frequency",
-      "slug": "linked-list-frequency",
-      "difficulty": "Easy",
-      "topics": [
-        "Hash Table",
-        "Linked List",
-        "Counting"
-      ],
-      "link": "https://leetcode.com/problems/linked-list-frequency"
-    },
-    {
-      "title": "Next Greater Node In Linked List",
-      "slug": "next-greater-node-in-linked-list",
-      "difficulty": "Medium",
       "topics": [
         "Array",
-        "Linked List",
-        "Stack",
-        "Monotonic Stack"
+        "String",
+        "Trie",
+        "Rolling Hash",
+        "String Matching",
+        "Hash Function"
       ],
-      "link": "https://leetcode.com/problems/next-greater-node-in-linked-list"
+      "link": "https://leetcode.com/problems/count-prefix-and-suffix-pairs-i"
+    },
+    {
+      "title": "Phone Number Prefix",
+      "slug": "phone-number-prefix",
+      "difficulty": "Easy",
+      "topics": [
+        "Array",
+        "String",
+        "Trie",
+        "Sorting"
+      ],
+      "link": "https://leetcode.com/problems/phone-number-prefix"
+    },
+    {
+      "title": "Number of Distinct Substrings in a String",
+      "slug": "number-of-distinct-substrings-in-a-string",
+      "difficulty": "Medium",
+      "topics": [
+        "String",
+        "Trie",
+        "Rolling Hash",
+        "Suffix Array",
+        "Hash Function"
+      ],
+      "link": "https://leetcode.com/problems/number-of-distinct-substrings-in-a-string"
     }
   ],
   "curriculum": [
     {
       "day": 1,
-      "title": "Convert Binary Number in a Linked List to Integer",
+      "title": "Index Pairs of a String",
       "difficulty": "Easy",
-      "link": "https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer"
+      "link": "https://leetcode.com/problems/index-pairs-of-a-string"
     },
     {
       "day": 2,
-      "title": "Middle of the Linked List",
+      "title": "Count Prefix and Suffix Pairs I",
       "difficulty": "Easy",
-      "link": "https://leetcode.com/problems/middle-of-the-linked-list"
+      "link": "https://leetcode.com/problems/count-prefix-and-suffix-pairs-i"
     },
     {
       "day": 3,
-      "title": "Remove Duplicates from Sorted List",
+      "title": "Longest Common Prefix",
       "difficulty": "Easy",
-      "link": "https://leetcode.com/problems/remove-duplicates-from-sorted-list"
+      "link": "https://leetcode.com/problems/longest-common-prefix"
     },
     {
       "day": 4,
-      "title": "Remove Duplicates from Sorted List II",
+      "title": "Implement Magic Dictionary",
       "difficulty": "Medium",
-      "link": "https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii"
+      "link": "https://leetcode.com/problems/implement-magic-dictionary"
     },
     {
       "day": 5,
-      "title": "Insert Greatest Common Divisors in Linked List",
+      "title": "Short Encoding of Words",
       "difficulty": "Medium",
-      "link": "https://leetcode.com/problems/insert-greatest-common-divisors-in-linked-list"
+      "link": "https://leetcode.com/problems/short-encoding-of-words"
     },
     {
       "day": 6,
-      "title": "Delete Nodes From Linked List Present in Array",
+      "title": "Words Within Two Edits of Dictionary",
       "difficulty": "Medium",
-      "link": "https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array"
+      "link": "https://leetcode.com/problems/words-within-two-edits-of-dictionary"
     },
     {
       "day": 7,
-      "title": "Merge k Sorted Lists",
+      "title": "Maximum Subarray XOR with Bounded Range",
       "difficulty": "Hard",
-      "link": "https://leetcode.com/problems/merge-k-sorted-lists"
+      "link": "https://leetcode.com/problems/maximum-subarray-xor-with-bounded-range"
     }
   ],
   "insight": {
-    "topic": "Linked List",
+    "topic": "Trie",
     "skill_level": "Beginner",
-    "today_focus": "Practice Easy problems in Linked List"
+    "today_focus": "Practice Easy problems in Trie"
   }
 }
